@@ -14,6 +14,10 @@ class CarService implements IService<ICar> {
     CarZodSchema.parse(obj);
     return this._car.create(obj);
   }
+
+  public async read():Promise<ICar[]> {
+    return this._car.read();
+  }
 }
 
 export default CarService;
