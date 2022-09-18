@@ -1,6 +1,6 @@
 import { ErrorRequestHandler } from 'express';
 import { ZodError } from 'zod';
-import { ErrorTypes, errorCatalog } from '../error/catalog';
+import { ErrorTypes, errorCatalog } from '../errors/catalog';
 
 const errorHandler: ErrorRequestHandler = ( 
   err: Error | ZodError, 
@@ -15,9 +15,9 @@ const errorHandler: ErrorRequestHandler = (
 
   const mappedError = errorCatalog[messageAsErrorType];
   if (mappedError) {
-    const { httpStatus, message } = mappedError;
+    const { httpStatus, error } = mappedError;
 
-    return res.status(httpStatus).json({ message });
+    return res.status(httpStatus).json({ error });
   }
 
   return res.status(500).json({ message: 'internal error' });
