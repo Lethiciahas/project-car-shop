@@ -22,3 +22,24 @@ describe('Teste CarModel', () => {
     });
 
 });
+
+describe('Teste CarModel', () => {
+    const carModel = new CarModel();
+    before(async () => {
+        sinon.stub(Model, 'find').resolves([carMockWithId]);
+    });
+    
+    after(()=>{
+    sinon.restore();
+})
+    describe('searching a car', () => {
+        it('_id not found', async () => {
+            try{
+                await carModel.readOne('123ERRADO')
+            } catch (error: any) {
+                expect(error.message).to.be.eq('InvalidMongoId');
+            }
+        })
+    });
+
+});
