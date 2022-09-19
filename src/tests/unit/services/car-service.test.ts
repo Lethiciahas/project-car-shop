@@ -80,15 +80,6 @@ describe('Sua descrição', () => {
             const cars = await carService.update(carMockWithId._id, carMock);
             expect(cars).to.be.deep.equal(carMockWithId);
         });
-        it('Failure: invalid body', async () => {
-            let error;
-            try { 
-                await carService.update(carMockWithId._id, carMockWithId as any);
-            } catch (err: any) {
-                error = err;
-            }
-            expect(error).to.be.instanceOf(ZodError);
-        });
         it('Failure id not found', async () => {
             let error;
             try {
