@@ -20,4 +20,15 @@ const carMockWithId:ICar & { _id:string }= {
     doorsQty: 2
 
 }
-export { carMock, carMockWithId };
+
+const invalidCarMock = {
+    model: "",
+    year: 0,
+    color: "",
+    buyValue: 0,
+    seatsQty: "a",
+    doorsQty: "a",
+
+}
+
+export { carMock, carMockWithId, invalidCarMock };
